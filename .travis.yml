@@ -9,4 +9,4 @@ before_install:
 install:
   - pip3 install -r requirements.txt
 script:
-  - py.test --cov
+  - py.test
