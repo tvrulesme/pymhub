@@ -2,8 +2,6 @@ import asyncio
 import functools
 import logging
 import re
-import serial
-import socket
 import requests
 from functools import wraps
 from threading import RLock
