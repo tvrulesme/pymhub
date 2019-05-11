@@ -6,9 +6,9 @@ import serial
 import socket
 import requests
 from functools import wraps
-from serial_asyncio import create_serial_connection
 from threading import RLock
 import aiohttp
+from time import sleep
 
 _LOGGER = logging.getLogger(__name__)
 ZONEMAP = {1:"a", 2:"b", 3:"c", 4:"d", 5:"e", 6:"f", 7:"g", 8:"h"}
@@ -76,9 +76,9 @@ def get_mhub(url):
             """
             Initialize the client.
             """
-            self.host = url
+            self.host = url + '/api/'
 
-        def _process_request(self, request: string):
+        def _process_request(self, request):
             """
             Send data to socket
             :param request: request that is sent to the blackbird
@@ -106,17 +106,19 @@ def get_mhub(url):
         @synchronized
         def zone_status(self, zone: int):
             # Returns status of a zone
-            json = self._process_request('data/200/z' + zone)
+            json = self._process_request('data/200/z' + str(zone))
             return json['data']['zone']['video_input']
     
         @synchronized
         def set_zone_source(self, zone: int, source: int):
             zone_letter = ZONEMAP.get(zone)
-            self._process_request('control/switch/' + zone_letter + '/' +source)
+            control_zone = 'control/switch/' + str(zone_letter) + '/' + str(source)
+            self._process_request(control_zone)
     
         @synchronized
         def set_all_zone_source(self, source: int):
             for zone in ZONEMAP: 
                 self.set_zone_source(zone, source)
+                sleep(1)
 
     return MhubSync(url)
