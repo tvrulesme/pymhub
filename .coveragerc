@@ -1,5 +1,5 @@
 [run]
-source = pyblackbird
+source = pymhub
 
 [report]
 # Regexes for lines to exclude from consideration

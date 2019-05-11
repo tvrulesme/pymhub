@@ -2,22 +2,14 @@ import unittest
 
 import serial
 
-from pyblackbird import (get_blackbird, get_async_blackbird, ZoneStatus)
+from pymhub import (get_mhub)
 from tests import (create_dummy_port, create_dummy_socket)
 import asyncio
-
-
-class TestZoneStatus(unittest.TestCase):
-
-    def test_zone_status_broken(self):
-        self.assertIsNone(ZoneStatus.from_string(None, None))
-        self.assertIsNone(ZoneStatus.from_string(1, 'VA: 09-<01\r'))
-        self.assertIsNone(ZoneStatus.from_string(10, '\r\n\r\n'))
 
 class TestBlackbird(unittest.TestCase):
     def setUp(self):
         self.responses = {}
-        self.blackbird = get_blackbird(create_dummy_port(self.responses))
+        self.mhub = get_mhub('http://192.168.0.44')
 
     def test_zone_status(self):
         self.responses[b'Status1.\r'] = b'AV: 02->01\r\nIR: 02->01\r'
@@ -88,24 +80,7 @@ class TestBlackbird(unittest.TestCase):
 
 
 
-class TestAsyncBlackbird(TestBlackbird):
 
-    def setUp(self):
-        self.responses = {}
-        loop = asyncio.get_event_loop()
-        blackbird = loop.run_until_complete(get_async_blackbird(create_dummy_port(self.responses), loop))
-
-        # Dummy blackbird that converts async to sync
-        class DummyBlackbird():
-            def __getattribute__(self, item):
-                def f(*args, **kwargs):
-                    return loop.run_until_complete(blackbird.__getattribute__(item)(*args, **kwargs))
-                return f
-        self.blackbird = DummyBlackbird()
-
-    def test_timeout(self):
-        with self.assertRaises(asyncio.TimeoutError):
-            self.blackbird.set_zone_source(6, 6)
 
 if __name__ == '__main__':
    unittest.main()

@@ -39,16 +39,16 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 """
 
-setup(name='pyblackbird',
+setup(name='pymhub',
       version=VERSION,
-      description='Python API for talking to Monoprice Blackbird 4k 8x8 HDBaseT Matrix',
-      url='https://github.com/koolsb/pyblackbird',
-      download_url='https://github.com/koolsb/pyblackbird/archive/{}.tar.gz'.format(VERSION),
-      author='Ben Kools',
-      author_email='koolsb@my.uwstout.edu',
+      description='Python API for talking to HDAnywhere HDBaseT Matrix',
+      url='https://github.com/tvrulesme/pymhub',
+      download_url='https://github.com/tvrulesme/pymhub/archive/{}.tar.gz'.format(VERSION),
+      author='John Williamson',
+      author_email='john.williamson.1975@gmail.com',
       license='MIT',
       install_requires=['pyserial>=3.4','pyserial-asyncio>=0.4'],
-      packages=['pyblackbird'],
+      packages=['pymhub'],
       classifiers=['Development Status :: 4 - Beta',
                    'Programming Language :: Python :: 3.5'],
       zip_safe=True)
