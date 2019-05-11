@@ -1,19 +1,8 @@
 #!/usr/bin/env python
 
-import os
-import sys
+from setuptools import setup
 
 VERSION = '0.5'
-
-try:
-    from setuptools import setup
-except ImportError:
-    from distutils.core import setup
-
-
-if sys.argv[-1] == 'publish':
-    os.system('python setup.py sdist upload')
-    sys.exit()
 
 license = """
 MIT License
@@ -47,7 +36,6 @@ setup(name='pymhub',
       author='John Williamson',
       author_email='john.williamson.1975@gmail.com',
       license='MIT',
-      install_requires=['pyserial>=3.4','pyserial-asyncio>=0.4'],
       packages=['pymhub'],
       classifiers=['Development Status :: 4 - Beta',
                    'Programming Language :: Python :: 3.5'],

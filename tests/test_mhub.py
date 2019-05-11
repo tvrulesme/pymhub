@@ -3,7 +3,6 @@ import unittest
 import serial
 
 from pymhub import (get_mhub)
-from tests import (create_dummy_port, create_dummy_socket)
 import asyncio
 
 class TestBlackbird(unittest.TestCase):
