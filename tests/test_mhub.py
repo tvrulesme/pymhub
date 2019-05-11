@@ -1,6 +1,5 @@
 import unittest
 
-import serial
 from time import sleep
 
 from pymhub import (get_mhub)
