@@ -1,6 +1,3 @@
-## Status
-https://travis-ci.org/tvrulesme/pymhub/builds/531069135
-[![Build Status](https://travis-ci.org/tvrulesme/pymhub.svg?branch=master)](https://travis-ci.org/tvrulesme/pymhub)[![Coverage Status](https://coveralls.io/repos/github/koolsb/pyblackbird/badge.svg)](https://coveralls.io/github/koolsb/pyblackbird)
 # pymhub
 Python3 interface implementation for HDAnywhere HDBaseT Matrix
 
